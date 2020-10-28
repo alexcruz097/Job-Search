@@ -1,0 +1,21 @@
+<%- include("partials/header") -%>
+
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">
+        <span class="badge badge-info"><%= jobIndex %></span><%-  JSON.stringify(jobTitle).substring(1, jobTitle.length+1) %>
+    </h5>
+    <h5 class="card-title"><%- company %></h5>
+    <h5 class="card-title"><%= location %></h5>
+    <p class="card-text"><%- JSON.stringify(description) %></p>
+    <p class="card-text"><%= jobType.replace(/_/g, " ").toUpperCase() %></p>
+    <p class="card-text"><%= new Date(dayCreated).toLocaleString() %></p>
+     <a
+      class="btn btn-primary"
+      target="_blank"
+      href="<%= applyURL %>">Apply</a>
+    <a class="btn btn-primary" href="/showJobs/<%= currentPage %>">Go back</a>
+  </div>
+</div>
+
+<%- include("partials/footer") -%>

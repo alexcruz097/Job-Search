@@ -1,0 +1,54 @@
+<%- include("partials/header"); -%>
+
+<form action="/" method="POST">
+    <!-- dropdown menus -->
+    <div class="row">
+  <div class="col">
+       <select name="datePosted" class="form-control" required>
+    <option selected value="">Date-Posted</option>
+    <option value="max_days_old=1">Last 24Hrs</option>
+     <option value="max_days_old=3">Last 3 Days</option>
+     <option value="max_days_old=7">Last 7 Days</option>
+     <option value="max_days_old=14">Last 14 Days</option>
+      <option value="max_days_old=30">Last 30 Days</option>
+      </select>
+    </div>
+    <div class="col">
+       <select name="maxDist" class="form-control" required> 
+    <option selected value="">Max-Distance</option>
+    <option value="distance=0">Exact Location</option>
+     <option value="distance=11">within 7 miles</option>
+     <option value="distance=24">within 15 miles</option>
+     <option value="distance=48">within 30 miles</option>
+     <option value="distance=80">within 50 miles</option>
+      </select>
+    </div>
+      <div class="col">
+       <select name="jobType" class="form-control" required>
+    <option selected value="">Job-Type</option>
+    <option value="full_time=1">Full-Type</option>
+     <option value="part_time=1">Part-Time</option>
+      </select>
+    </div>
+  </div>
+  <div class="row d-flex flex-column">
+  <div class="col-10 justify-content-center">
+  <div class="form-group ">
+    <input name = "jobTitle" type="text" class="form-control form-control-lg d-flex justify-content-center"  placeholder="Job Type" required>
+  </div>
+  </div>
+    <div class="col-10">
+  <div class="form-group">
+    <input name="location"type="text" class="form-control form-control-lg"  placeholder="Location" required>
+  </div>
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
+
+
+
+
+
+<%- include("partials/footer"); -%>

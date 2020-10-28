@@ -190,5 +190,5 @@ app.get("/error", (req, res) => {
 
 // start web server
 app.listen(PORT, () => {
-    console.log("The server is running in port: " + PORT);
+    console.log(`The server is running in port: ${PORT}`);
 });

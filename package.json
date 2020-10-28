@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A job search web page using node js and express",
   "engines": {
-    "node": "2.19.0"
+    "node": "12.19.0"
   },
   "main": "app.js",
   "scripts": {

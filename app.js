@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const https = require("https");
 const config = require("./config")
 // Load the full build.
-var PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5000;
 let _ = require("lodash");
 const ejs = require("ejs");
 const app = express();

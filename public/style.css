@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #fafafa;
+}
+
+/****************** card styles ************************/
+.card-container {
+  background-color: #e8f1f5;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+}
+.job-title {
+  font-size: 30px;
+  font-weight: 400;
+}
+.job-title span {
+  background-color: #004a7c;
+  font-size: 15px;
+}
+.company-name {
+  opacity: 0.7;
+}
+.job-description {
+  opacity: 0.7;
+}
+.apply-btn {
+  background-color: #005691;
+  font-size: 20px;
+  font-weight: 100;
+  padding: 7px 5rem;
+}
+.read-more-link {
+  opacity: 1;
+  font-size: 20px;
+  font-weight: 300;
+  color: #004a7c;
+}
+/************** pagination **************** */
+.pagination button {
+  cursor: pointer;
+  padding: 7px 30px;
+  color: black;
+  border-radius: 0 0 15px 15px;
+}
+.prev-page {
+  border-bottom-left-radius: 2rem;
+  border-top-left-radius: 3rem;
+}
+.next-page {
+  border-bottom-right-radius: 4rem;
+  border-top-right-radius: 3rem;
+}
+.current-page {
+  background-color: skyblue;
+  color: white;
+}

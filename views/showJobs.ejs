@@ -1,34 +1,56 @@
 <%- include("partials/header") -%>
-<h4>Jobs found: <%= numOfJobsFound %> </h4>
+<div class="container">
+  <div class="row d-flex justify-content-center my-2">
+    <div class="col-6">
+      <h4>Jobs found: <%= numOfJobsFound %></h4>
+    </div>
+    <h4>Page: <%= currentPage %> / <%= numberOfPages %></h4>
+    <div class="col-6"></div>
+  </div>
+</div>
 
 <% for(let i =0 ; i< results.length; i++){%>
-<div class="card mt-4">
+<div class="card card-container mt-2 container col-lg-9 ">
   <div class="card-body">
-    <h5 class="card-title">
-
-        <span class="badge badge-info"><%= [i+1] %></span>
-      <%-  JSON.stringify(results[i].title).substring(1, results[i].title.length+1) %>
+    <h5 class="card-title job-title">
+      <span class="badge badge-info"><%= i+1 %></span>
+      <%- JSON.stringify(results[i].title).substring(1,
+      results[i].title.length+1) %>
     </h5>
-    <h5 class="card-title"><%= results[i].company.display_name %></h5>
-    <h5 class="card-title"><%= results[i].location.display_name %></h5>
-    <p class="card-text">
-      <%-  JSON.stringify(results[i].description).substr(0, 107)+ '...' %>
-      <a href="/jobPost/<%= results[i].id %>">Read More</a>
+    <h5 class="card-title company-name"><%= results[i].company.display_name %></h5>
+    <h5 class="card-title job-location"><%= results[i].location.display_name %></h5>
+    <p class="card-text job-description">
+      <%- JSON.stringify(results[i].description).substr(0, 107)+ '...' %>
+      <a class="read-more-link" href="/jobPost/<%= results[i].id %>"> Read More</a>
     </p>
-    <p class="card-text"><%= results[i].contract_time.replace(/_/g, " ").toUpperCase() %></p>
-    <p class="card-text"><%= new Date(results[i].created).toLocaleString() %></p>
+    <p class="card-text">
+      <%= results[i].contract_time.replace(/_/g, " ").toUpperCase() %>
+    </p>
+    <p class="card-text">
+      <%= new Date(results[i].created).toLocaleString() %>
+    </p>
     <a
-      class="btn btn-primary"
+      class="btn btn-primary apply-btn"
       target="_blank"
-      href="<%= results[i].redirect_url %>">Apply</a>
+      href="<%= results[i].redirect_url %>"
+      >Apply</a
+    >
   </div>
 </div>
 <%}%>
 
-<form method="POST" action="/showJobs/<%= currentPage %>">
-  <button name="prevPage" value="-1">-</button>
- <h4>Page: <%= currentPage %> / <%= numberOfPages %></h4>
+<!-- pagination to go to the next page or going back -->
 
-  <button name="nextPage" value="1">+</button>
+<form method="POST" action="/showJobs/<%= currentPage %>">
+  <div class="container my-3">
+    <div class="row d-flex justify-content-center mt-3 pagination">
+      <button class = "prev-page"name="prevPage" value="1">Previous</button>
+      <button name="prevPage" value="1"><%= currentPage -1 %></button>
+      <button class="current-page"><%= currentPage %></button>
+      <button name="nextPage" value="1"><%= currentPage +1 %></button>
+      <button class="next-page" name="nextPage" value="1">Next</button>
+    </div>
+  </div>
 </form>
+
 <%- include("partials/footer") -%>

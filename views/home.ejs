@@ -2,8 +2,9 @@
 
 <form action="/" method="POST">
     <!-- dropdown menus -->
-    <div class="row">
-  <div class="col">
+    <div class="container">
+    <div class="row mt-3">
+  <div class="col-12 col-lg mb-2">
        <select name="datePosted" class="form-control" required>
     <option selected value="">Date-Posted</option>
     <option value="max_days_old=1">Last 24Hrs</option>
@@ -13,7 +14,7 @@
       <option value="max_days_old=30">Last 30 Days</option>
       </select>
     </div>
-    <div class="col">
+    <div class="col col-md-6 col-lg">
        <select name="maxDist" class="form-control" required> 
     <option selected value="">Max-Distance</option>
     <option value="distance=0">Exact Location</option>
@@ -23,7 +24,8 @@
      <option value="distance=80">within 50 miles</option>
       </select>
     </div>
-      <div class="col">
+ 
+      <div class="col col-md-6 col-lg">
        <select name="jobType" class="form-control" required>
     <option selected value="">Job-Type</option>
     <option value="full_time=1">Full-Type</option>
@@ -31,20 +33,21 @@
       </select>
     </div>
   </div>
-  <div class="row d-flex flex-column">
-  <div class="col-10 justify-content-center">
+  <div class="row">
+  <div class="col-12 j">
   <div class="form-group ">
-    <input name = "jobTitle" type="text" class="form-control form-control-lg d-flex justify-content-center"  placeholder="Job Type" required>
+    <input name = "jobTitle" type="text" class="form-control form-control-lg d-flex justify-content-center mt-3"  placeholder="Job Type" required>
   </div>
   </div>
-    <div class="col-10">
+    <div class="col-12">
   <div class="form-group">
     <input name="location"type="text" class="form-control form-control-lg"  placeholder="Location" required>
   </div>
   </div>
   </div>
-  <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary">Search</button>
   </div>
+
 </form>
 
 

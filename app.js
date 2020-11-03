@@ -17,7 +17,7 @@ app.use(express.static("public"));
 // use this command to be able to use data from the form
 app.use(
   body.urlencoded({
-    extended: true,
+    extended: true, 
   })
 );
 // data needed for the request to work

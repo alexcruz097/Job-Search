@@ -2,7 +2,7 @@ const express = require("express");
 const body = require("body-parser");
 const https = require("https");
 const config = require("./config");
-let server_port = process.env.YOUR_PORT || process.env.PORT || 80;
+let server_port = process.env.YOUR_PORT || process.env.PORT || 5000;
 let server_host = process.env.YOUR_HOST || "0.0.0.0";
 // Load the full build.
 let _ = require("lodash");
@@ -192,5 +192,5 @@ app.get("/error", (req, res) => {
 
 // start web server
 app.listen(server_port, server_host, () => {
-  console.log(`The server is running in port: ${PORT}`);
+  console.log(`The server is running in port: ${server_port}`);
 });

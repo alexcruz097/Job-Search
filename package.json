@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "A job search web page using node js and express",
   "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
   "author": "Alex Cruz",
   "license": "ISC",
   "dependencies": {

@@ -2,31 +2,39 @@
 <div class="container">
   <div class="row d-flex justify-content-center my-2">
     <div class="col-6">
-      <h4>Jobs found: <%= numOfJobsFound %></h4>
+      <h4 id="num-of-jobs">Jobs found: <%= numOfJobsFound %></h4>
     </div>
-    <h4>Page: <%= currentPage %> / <%= numberOfPages %></h4>
+    <h4 id="num-of-pages">Page: <%= currentPage %> / <%= numberOfPages %></h4>
     <div class="col-6"></div>
   </div>
 </div>
 
 <% for(let i =0 ; i< results.length; i++){%>
-<div class="card card-container mt-2 container col-lg-9 ">
+<div class="card card-container mt-2 container col-lg-9">
   <div class="card-body">
     <h5 class="card-title job-title">
-      <span class="badge badge-info"><%= i+1 %></span>
+      <span class="badge badge-info"></span>
       <%- JSON.stringify(results[i].title).substring(1,
       results[i].title.length+1) %>
     </h5>
-    <h5 class="card-title company-name"><%= results[i].company.display_name %></h5>
-    <h5 class="card-title job-location"><%= results[i].location.display_name %></h5>
+    <h5 class="card-title company-name">
+      <%= results[i].company.display_name %>
+    </h5>
+    <h5 class="card-title job-location">
+      <%= results[i].location.display_name %>
+    </h5>
+
     <p class="card-text job-description">
-      <%- JSON.stringify(results[i].description).substr(0, 107)+ '...' %>
-      <a class="read-more-link" href="/jobPost/<%= results[i].id %>"> Read More</a>
+      <%- JSON.stringify(results[i].description).slice(0, 149)%>....
+      <a class="read-more-link" href="/jobPost/<%= results[i].id %>"
+        >READ MORE</a
+      >
     </p>
-    <p class="card-text">
+
+    <p class="card-text contract-time">
       <%= results[i].contract_time.replace(/_/g, " ").toUpperCase() %>
     </p>
-    <p class="card-text">
+    <p class="card-text date-posted">
       <%= new Date(results[i].created).toLocaleString() %>
     </p>
     <a
@@ -44,11 +52,20 @@
 <form method="POST" action="/showJobs/<%= currentPage %>">
   <div class="container my-3">
     <div class="row d-flex justify-content-center mt-3 pagination">
-      <button class = "prev-page"name="prevPage" value="1">Previous</button>
+      <% if(currentPage > 1){ %>
+      <button class="prev-page" name="prevPage" value="1"><</button>
       <button name="prevPage" value="1"><%= currentPage -1 %></button>
+      <% } %>
       <button class="current-page"><%= currentPage %></button>
+      <% if(currentPage !== numberOfPages){ %>
       <button name="nextPage" value="1"><%= currentPage +1 %></button>
-      <button class="next-page" name="nextPage" value="1">Next</button>
+      <% if(numberOfPages > 4 && currentPage < numberOfPages -2) {%>
+      <button name="lastPage" value="<%=numberOfPages%>">
+        ...<%= numberOfPages %>
+      </button>
+      <% }%>
+      <button class="next-page" name="nextPage" value="1">></button>
+      <% } %>
     </div>
   </div>
 </form>

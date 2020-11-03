@@ -6,56 +6,117 @@
 body {
   background-color: #fafafa;
 }
+.links {
+  border-bottom: 1px solid black;
 
-/****************** card styles ************************/
+}
+/***************** Home.ejs styles    ******************/
+.home-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+}
+/***************** SHOWJOBS.ejs styles ******************/
+
+#num-of-jobs {
+  font-size: 20px;
+}
+#num-of-pages {
+  font-size: 20px;
+}
+/*--- card styles ---*/
 .card-container {
   background-color: #e8f1f5;
   border: none;
   border-radius: 12px;
   display: flex;
+  border-bottom: 1px solid black;
+  border-left: 0.1px solid black;
+  border-top-right-radius: 0px;
+}
+.job-title,
+.job-location,
+.apply-btn {
+  font-family: "Merriweather Sans", sans-serif;
+}
+.company-name,
+.job-description,
+.contract-time,
+.date-posted,
+#num-of-jobs,
+#num-of-pages {
+  font-family: "Merriweather", serif;
 }
 .job-title {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 400;
 }
 .job-title span {
   background-color: #004a7c;
-  font-size: 15px;
 }
 .company-name {
-  opacity: 0.7;
+  font-size: 17px;
+}
+.job-location {
+  font-size: 17px;
 }
 .job-description {
+  font-size: 15px;
   opacity: 0.7;
-}
-.apply-btn {
-  background-color: #005691;
-  font-size: 20px;
   font-weight: 100;
-  padding: 7px 5rem;
 }
 .read-more-link {
   opacity: 1;
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 15px;
+  font-weight: 600;
   color: #004a7c;
 }
-/************** pagination **************** */
+.contract-time {
+  font-weight: 400;
+  font-size: 12px;
+}
+.date-posted {
+  font-weight: 400;
+  font-size: 12px;
+}
+.apply-btn {
+  background-color: #005691;
+  font-size: 15px;
+  font-weight: 100;
+  padding: 7px 3rem;
+}
+
+/*--- Pagination ---*/
 .pagination button {
   cursor: pointer;
-  padding: 7px 30px;
+  padding: 7px 15px;
   color: black;
-  border-radius: 0 0 15px 15px;
+  border-radius: 7px;
+  border-right: none;
+  border-top: none;
+  outline: none;
+  font-size: 14px;
+  margin-left: 3px;
 }
-.prev-page {
-  border-bottom-left-radius: 2rem;
-  border-top-left-radius: 3rem;
-}
-.next-page {
-  border-bottom-right-radius: 4rem;
-  border-top-right-radius: 3rem;
+.pagination button:hover {
+  color: red;
 }
 .current-page {
   background-color: skyblue;
   color: white;
+}
+
+/***************** Error.ejs styles ******************/
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 17%;
+}
+#error-message {
+  font-size: 17px;
+}
+#error-img {
+  width: 50%;
 }

@@ -2,6 +2,7 @@ const express = require("express");
 const body = require("body-parser");
 const https = require("https");
 const config = require("./config");
+
 // Load the full build.
 const PORT = process.env.PORT || 5000;
 let _ = require("lodash");
@@ -31,14 +32,16 @@ let jobType;
 let currentPage;
 let results = [];
 let numOfJobsFound;
-
+let numberOfPages;
+let statusCode;
 // our error message
 let errorMessageCode = "";
 let noJobFoundMSG = "";
+// type writer
 
 // home page route
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", { statusCode: statusCode });
 });
 
 //home page route post request
@@ -54,7 +57,7 @@ app.post("/", (req, res) => {
     `https://api.adzuna.com/v1/api/jobs/us/search/${currentPage}?what=${jobTitle}&where=${location}&${datePosted}&${maxDist}&${jobType}&app_id=${appID}&app_key=${apiKey}`,
     (response) => {
       let data = "";
-      console.log(response.statusCode);
+      statusCode = response.statusCode;
       // action if the https goes thru
       if (response.statusCode === 200) {
         response.on("data", (notJson) => {
@@ -65,10 +68,10 @@ app.post("/", (req, res) => {
       // if the server con not find a job that matches the clien request
       else if (response.statusCode === 400) {
         noJobFoundMSG =
-          " we couldnt find a job that matches your needs. Please try using other keywords";
+          " we did not find a job that matches your needs. Please try using other keywords";
         res.redirect("/error");
       } else if (response.statusCode !== 200 && response.statusCode !== 400) {
-        errorMessageCode += `your request came with a  ${response.statusCode.toString()} Code :(`;
+        errorMessageCode += `your request came with a  ${response.statusCode.toString()} Code`;
         res.redirect("/error");
       }
       //   when the data is finish we will redirect to showJobs
@@ -92,7 +95,7 @@ app.post("/", (req, res) => {
 // show all jobs route
 app.get("/showJobs/:page", (req, res) => {
   // get the total num of pages by dividing the num of jobs by 10
-  let numberOfPages = Math.ceil(numOfJobsFound / 10);
+  numberOfPages = Math.ceil(numOfJobsFound / 10);
 
   res.render("showJobs", {
     results: results,
@@ -103,17 +106,21 @@ app.get("/showJobs/:page", (req, res) => {
 });
 
 app.post("/showJobs/:page", (req, res) => {
-    let nextPage = req.body.nextPage;
-    let prevPage = req.body.prevPage;
-
-  if (nextPage) {
+  let nextPage = req.body.nextPage;
+  let prevPage = req.body.prevPage;
+  let lastPage = req.body.lastPage;
+console.log(typeof lastPage)
+  // functionality of the pagination to change the current page
+  if (nextPage ) {
     currentPage++;
     console.log("next");
   } else if (prevPage) {
-    if (currentPage >= 1) {
-      currentPage--;
-      console.log("prev");
-    }
+    currentPage--;
+    console.log("prev");
+  } else if (lastPage) {
+
+    currentPage = parseInt(lastPage);
+        console.log("clid");
   }
 
   console.log(currentPage);
@@ -130,12 +137,8 @@ app.post("/showJobs/:page", (req, res) => {
         // if code error is not because of user input: do this
       }
       // if the server con not find a job that matches the clien request
-      else if (response.statusCode === 400) {
-        noJobFoundMSG =
-          " we couldnt find a job that matches your needs. Please try using other keywords";
-        res.redirect("/error");
-      } else if (response.statusCode !== 200 && response.statusCode !== 400) {
-        errorMessageCode += `your request came with a  ${response.statusCode.toString()} Code :(`;
+      else if (response.statusCode !== 200 && response.statusCode !== 400) {
+        errorMessageCode += `your request came with a  ${response.statusCode.toString()} Code`;
         res.redirect("/error");
       }
       //   when the data is finish we will redirect to showJobs
@@ -179,7 +182,7 @@ app.get("/jobPost/:id", (req, res) => {
     }
   });
 });
-// route to go thru web pages
+
 // error route
 app.get("/error", (req, res) => {
   res.render("error", {

@@ -4,7 +4,6 @@ const https = require("https");
 const config = require("./config");
 
 // Load the full build.
-const PORT = process.env.PORT || 5000;
 let _ = require("lodash");
 const ejs = require("ejs");
 const app = express();
@@ -17,7 +16,7 @@ app.use(express.static("public"));
 // use this command to be able to use data from the form
 app.use(
   body.urlencoded({
-    extended: true, 
+    extended: true,
   })
 );
 // data needed for the request to work
@@ -109,18 +108,17 @@ app.post("/showJobs/:page", (req, res) => {
   let nextPage = req.body.nextPage;
   let prevPage = req.body.prevPage;
   let lastPage = req.body.lastPage;
-console.log(typeof lastPage)
+  console.log(typeof lastPage);
   // functionality of the pagination to change the current page
-  if (nextPage ) {
+  if (nextPage) {
     currentPage++;
     console.log("next");
   } else if (prevPage) {
     currentPage--;
     console.log("prev");
   } else if (lastPage) {
-
     currentPage = parseInt(lastPage);
-        console.log("clid");
+    console.log("clid");
   }
 
   console.log(currentPage);
@@ -192,6 +190,6 @@ app.get("/error", (req, res) => {
 });
 
 // start web server
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`The server is running in port: ${PORT}`);
 });

@@ -1,7 +1,6 @@
 const express = require("express");
 const body = require("body-parser");
 const https = require("https");
-const config = require("./config");
 const PORT = process.env.PORT || 3000;
 
 // Load the full build.

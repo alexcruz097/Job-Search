@@ -6,7 +6,7 @@
   "author": "Alex Cruz",
   "license": "ISC",
   "scripts": {
-    "npm start": "nodemon app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

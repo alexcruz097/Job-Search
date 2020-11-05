@@ -164,7 +164,7 @@ app.post("/showJobs/:page", (req, res) => {
 // show indivugual job post
 app.get("/jobPost/:id", (req, res) => {
   let jobID = req.params.id;
-  // iterage over array to see if the id to match that job post
+  // iterage over array to see  if the id to match that job post
   results.forEach((job, index) => {
     if (job.id === jobID) {
       res.render("jobPost", {

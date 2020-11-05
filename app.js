@@ -21,8 +21,8 @@ app.use(
   })
 );
 // data needed for the request to work
-const apiKey = config.API_KEY;
-const appID = config.APP_ID;
+const apiKey = process.env["KEY"];
+const appID = process.env["ID"];
 // querys to make url request
 let jobTitle;
 let location;

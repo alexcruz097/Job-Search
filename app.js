@@ -2,8 +2,8 @@ const express = require("express");
 const body = require("body-parser");
 const https = require("https");
 const config = require("./config");
-let server_port = process.env.YOUR_PORT || process.env.PORT || 5000;
-let server_host = process.env.YOUR_HOST || "0.0.0.0";
+const PORT = process.env.PORT || 3000;
+
 // Load the full build.
 let _ = require("lodash");
 const ejs = require("ejs");
@@ -39,8 +39,9 @@ let errorMessageCode = "";
 let noJobFoundMSG = "";
 // type writer
 
-// home page route
 app.get("/", (req, res) => {
+  // home page route
+
   res.render("home", { statusCode: statusCode });
 });
 
@@ -191,6 +192,6 @@ app.get("/error", (req, res) => {
 });
 
 // start web server
-app.listen(server_port, server_host, () => {
-  console.log(`The server is running in port: ${server_port}`);
+app.listen(PORT, () => {
+  console.log(`The server is running in port: ${PORT}`);
 });

@@ -1,12 +1,14 @@
 <%- include("partials/header") -%>
 
-<div class="container error-container">
-  <% if(errorMessageCode !== 401){%>
-  <img id="error-img" src="./images/errorr.gif" />
-  <%} %>
-  <p id="error-message">
-    **Sorry,<%= noJobFoundMSG %> <%= errorMessageCode %>**
-  </p>
-  <h5>Please try again <a href="/">Go Home</a></h5>
+<div class="row">
+  <div class="container error-container col-md-8 col-xl-7">
+    <% if(errorMessageCode !== 401){%>
+    <img id="error-img" src="./images/errorr.gif" />
+    <%} %>
+    <p id="error-message">
+      **Sorry,<%= noJobFoundMSG %> <%= errorMessageCode %>**
+    </p>
+    <h5 id="try-again">Please try again <a href="/">Go Home</a></h5>
+  </div>
 </div>
 <%- include("partials/footer") -%>

@@ -1,18 +1,30 @@
 <%- include("partials/header") -%>
 
-<div class="card mt-4">
-  <div class="card-body container">
-    <h5 class="card-title">
-      <span class="badge badge-info"><%= jobIndex %></span><%-
-      JSON.stringify(jobTitle).substring(1, jobTitle.length+1) %>
-    </h5>
-    <h5 class="card-title"><%- company %></h5>
-    <h5 class="card-title"><%= location %></h5>
-    <p class="card-text"><%- JSON.stringify(description) %></p>
-    <p class="card-text"><%= jobType.replace(/_/g, " ").toUpperCase() %></p>
-    <p class="card-text"><%= new Date(dayCreated).toLocaleString() %></p>
-    <a class="btn btn-primary" target="_blank" href="<%= applyURL %>">Apply</a>
-    <a class="btn btn-primary" href="/showJobs/<%= currentPage %>">Go back</a>
+<div class="row">
+  <div class="card card-container mt-2 container col-md-8 col-xl-7">
+    <div class="card-body container">
+      <h5 class="card-title job-title">
+        <%- JSON.stringify(jobTitle).substring(1, jobTitle.length+1) %>
+      </h5>
+      <h5 class="card-title company-name"><%- company %></h5>
+      <h5 class="card-title job-location"><%= location %></h5>
+      <p class="card-text job-description">
+        <%- JSON.stringify(description) %>
+      </p>
+      <p class="card-text contract-time">
+        <%= jobType.replace(/_/g, " ").toUpperCase() %>
+      </p>
+      <p class="card-text date-posted">
+        <%= new Date(dayCreated).toLocaleString() %>
+      </p>
+      <a
+        class="btn btn-primary apply-btn"
+        target="_blank"
+        href="<%= applyURL %>"
+        >Apply</a
+      >
+      <a class="btn btn-primary" href="/showJobs/<%= currentPage %>">Go back</a>
+    </div>
   </div>
 </div>
 

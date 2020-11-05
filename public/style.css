@@ -4,11 +4,24 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #fafafa;
+  background-color: #e8e8e8;
 }
 .links {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #ea2c62;
+}
+/***************** Navbar.ejs styles    ******************/
+.nav-bar {
+  background-color: #495464;
+  color: white;
+}
 
+.logo-name {
+  font-size: 22px;
+}
+.home-link,
+.portfolio-link {
+  font-size: 17px;
+  color: white;
 }
 /***************** Home.ejs styles    ******************/
 .home-form {
@@ -16,17 +29,16 @@ body {
   flex-direction: column;
   margin-top: 4rem;
 }
-/***************** SHOWJOBS.ejs styles ******************/
-
-#num-of-jobs {
-  font-size: 20px;
+.submit-btn {
+  background-color: #495464;
+  color: #f4f4f2;
 }
-#num-of-pages {
-  font-size: 20px;
+.form-control {
+  background-color: #f4f4f2;
 }
 /*--- card styles ---*/
 .card-container {
-  background-color: #e8f1f5;
+  background-color: #f4f4f2;
   border: none;
   border-radius: 12px;
   display: flex;
@@ -80,7 +92,7 @@ body {
   font-size: 12px;
 }
 .apply-btn {
-  background-color: #005691;
+  background-color: #495464;
   font-size: 15px;
   font-weight: 100;
   padding: 7px 3rem;
@@ -109,14 +121,100 @@ body {
 /***************** Error.ejs styles ******************/
 .error-container {
   display: flex;
+  min-height: 60vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 17%;
 }
 #error-message {
+  margin: 12px 0px;
   font-size: 17px;
+  text-align: center;
 }
 #error-img {
-  width: 50%;
+  max-width: 35%;
+}
+@media (min-width: 768px) {
+  /* change the font-size */
+  /***************** Navbar.ejs styles    ******************/
+  .logo-name {
+    font-size: 27px;
+  }
+  .home-link,
+  .portfolio-link {
+    font-size: 22px;
+  }
+  /***************** SHOWJOBS.ejs styles ******************/
+
+  #num-of-jobs {
+    font-size: 25px;
+  }
+  #num-of-pages {
+    font-size: 25px;
+  }
+
+  .job-title {
+    font-size: 25px;
+    font-weight: 350;
+  }
+  .job-title span {
+    background-color: #004a7c;
+  }
+  .company-name {
+    font-size: 22px;
+  }
+  .job-location {
+    font-size: 22px;
+  }
+  .job-description {
+    font-size: 18px;
+    opacity: 0.75;
+  }
+  .read-more-link {
+    opacity: 1;
+    font-size: 20px;
+    font-weight: 600;
+    color: #004a7c;
+  }
+  .contract-time {
+    font-weight: 400;
+    font-size: 17px;
+  }
+  .date-posted {
+    font-weight: 400;
+    font-size: 17px;
+  }
+  .apply-btn {
+    font-size: 17px;
+    font-weight: 100;
+    padding: 7px 6rem;
+  }
+
+  /*--- Pagination ---*/
+  .pagination button {
+    padding: 7px 20px;
+
+    font-size: 19px;
+    margin-left: 5px;
+  }
+  .pagination button:hover {
+    color: red;
+  }
+  .current-page {
+    background-color: skyblue;
+    color: white;
+  }
+  /* error */
+  #error-message {
+    font-size: 22px;
+    text-align: center;
+  }
+  #try-again {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1200px) {
+  .home-form {
+    max-width: 60%;
+  }
 }

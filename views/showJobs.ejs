@@ -10,39 +10,42 @@
 </div>
 
 <% for(let i =0 ; i< results.length; i++){%>
-<div class="card card-container mt-2 container col-lg-9">
-  <div class="card-body">
-    <h5 class="card-title job-title">
-      <span class="badge badge-info"></span>
-      <%- JSON.stringify(results[i].title).substring(1,
-      results[i].title.length+1) %>
-    </h5>
-    <h5 class="card-title company-name">
-      <%= results[i].company.display_name %>
-    </h5>
-    <h5 class="card-title job-location">
-      <%= results[i].location.display_name %>
-    </h5>
 
-    <p class="card-text job-description">
-      <%- JSON.stringify(results[i].description).slice(0, 149)%>....
-      <a class="read-more-link" href="/jobPost/<%= results[i].id %>"
-        >READ MORE</a
+<div class="row">
+  <div class="card card-container mt-2 container col-md-8 col-xl-7">
+    <div class="card-body">
+      <h5 class="card-title job-title">
+        <span class="badge badge-info"></span>
+        <%- JSON.stringify(results[i].title).substring(1,
+        results[i].title.length+1) %>
+      </h5>
+      <h5 class="card-title company-name">
+        <%= results[i].company.display_name %>
+      </h5>
+      <h5 class="card-title job-location">
+        <%= results[i].location.display_name %>
+      </h5>
+
+      <p class="card-text job-description">
+        <%- JSON.stringify(results[i].description).slice(0, 149)%>....
+        <a class="read-more-link" href="/jobPost/<%= results[i].id %>"
+          >READ MORE</a
+        >
+      </p>
+
+      <p class="card-text contract-time">
+        <%= results[i].contract_time.replace(/_/g, " ").toUpperCase() %>
+      </p>
+      <p class="card-text date-posted">
+        <%= new Date(results[i].created).toLocaleString() %>
+      </p>
+      <a
+        class="btn btn-primary apply-btn"
+        target="_blank"
+        href="<%= results[i].redirect_url %>"
+        >Apply</a
       >
-    </p>
-
-    <p class="card-text contract-time">
-      <%= results[i].contract_time.replace(/_/g, " ").toUpperCase() %>
-    </p>
-    <p class="card-text date-posted">
-      <%= new Date(results[i].created).toLocaleString() %>
-    </p>
-    <a
-      class="btn btn-primary apply-btn"
-      target="_blank"
-      href="<%= results[i].redirect_url %>"
-      >Apply</a
-    >
+    </div>
   </div>
 </div>
 <%}%>

@@ -2,7 +2,8 @@ const express = require("express");
 const body = require("body-parser");
 const https = require("https");
 const PORT = process.env.PORT || 3000;
-
+// keys
+const keys = require("./config/production/prod.js");
 // Load the full build.
 let _ = require("lodash");
 const ejs = require("ejs");
@@ -20,8 +21,8 @@ app.use(
   })
 );
 // data needed for the request to work
-const apiKey = process.env["KEY"];
-const appID = process.env["ID"];
+const apiKey = keys.app_key;
+const appID = keys.app_id;
 // querys to make url request
 let jobTitle;
 let location;
@@ -40,7 +41,7 @@ let noJobFoundMSG = "";
 
 app.get("/", (req, res) => {
   // home page route
-
+console.log(keys)
   res.render("home", { statusCode: statusCode });
 });
 
@@ -80,7 +81,7 @@ app.post("/", (req, res) => {
         results = jobData.results;
         numOfJobsFound = jobData.count;
 
-        // check if returned data has content and if not redirect them to error
+        // check if returned  data has content and if not redirect them to error
         if (jobData.count > 0) {
           res.redirect(`/showJobs/${currentPage}`);
         } else if (response.statusCode === 200 && numOfJobsFound === 0) {

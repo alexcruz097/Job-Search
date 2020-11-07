@@ -3,7 +3,7 @@ const body = require("body-parser");
 const https = require("https");
 const PORT = process.env.PORT || 3000;
 // keys
-const keys = require("./config/production/prod.js");
+const keys = require("./config/development/keys.js");
 // Load the full build.
 let _ = require("lodash");
 const ejs = require("ejs");
@@ -21,8 +21,8 @@ app.use(
   })
 );
 // data needed for the request to work
-const apiKey = keys.app_id;
-const appID = keys.app_key;
+const apiKey = keys.app_key;
+const appID = keys.app_id;
 // querys to make url request
 let jobTitle;
 let location;
@@ -41,7 +41,7 @@ let noJobFoundMSG = "";
 
 app.get("/", (req, res) => {
   // home page route
-console.log(keys)
+
   res.render("home", { statusCode: statusCode });
 });
 
@@ -97,7 +97,6 @@ app.post("/", (req, res) => {
 app.get("/showJobs/:page", (req, res) => {
   // get the total num of pages by dividing the num of jobs by 10
   numberOfPages = Math.ceil(numOfJobsFound / 10);
-
   res.render("showJobs", {
     results: results,
     currentPage: currentPage,

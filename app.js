@@ -21,8 +21,8 @@ app.use(
   })
 );
 // data needed for the request to work
-const apiKey = keys.app_key;
-const appID = keys.app_id;
+const apiKey = keys.app_id;
+const appID = keys.app_key;
 // querys to make url request
 let jobTitle;
 let location;

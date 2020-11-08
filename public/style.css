@@ -5,16 +5,29 @@
 }
 body {
   background-color: #e8e8e8;
+  line-height: 1.5;
 }
-.links {
-  border-bottom: 1px solid #ea2c62;
+
+.fas,
+.far {
+  font-size: 17px;
+  margin-right: 3px;
+  color: #495464;
+}
+#job-post-description {
+  font-size: 15px;
+  opacity: 1;
+  color: black;
+  font-weight: 500;
 }
 /***************** Navbar.ejs styles    ******************/
 .nav-bar {
   background-color: #495464;
   color: white;
 }
-
+.links {
+  border-bottom: 3px solid #1a1c20;
+}
 .logo-name {
   font-size: 22px;
 }
@@ -23,6 +36,13 @@ body {
   font-size: 17px;
   color: white;
 }
+.home-link:hover,
+.portfolio-link:hover,
+.job-title:hover {
+  text-decoration: none;
+  color: #eeeeee;
+}
+
 /***************** Home.ejs styles    ******************/
 .home-form {
   display: flex;
@@ -36,9 +56,26 @@ body {
 .form-control {
   background-color: #f4f4f2;
 }
+/*****************  showJobs.ejs style  ******************/
+.job-title,
+.job-location,
+.contract-time {
+  color: black;
+  font-weight: 600;
+}
+.job-description {
+  color: #495464;
+}
 /*--- card styles ---*/
+#job-title-searched {
+  color: #495464;
+  font-size: 25px;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+}
+
 .card-container {
-  background-color: #f4f4f2;
+  background-color: whitesmoke;
   border: none;
   border-radius: 12px;
   display: flex;
@@ -48,8 +85,16 @@ body {
 }
 .job-title,
 .job-location,
-.apply-btn {
+.apply-btn,
+#job-title-searched {
   font-family: "Merriweather Sans", sans-serif;
+}
+.job-title {
+  transition: transform 1s;
+}
+.job-title:hover {
+  transform: skewX(2);
+  color: #495464;
 }
 .company-name,
 .job-description,
@@ -63,9 +108,7 @@ body {
   font-size: 20px;
   font-weight: 400;
 }
-.job-title span {
-  background-color: #004a7c;
-}
+
 .company-name {
   font-size: 17px;
 }
@@ -73,23 +116,28 @@ body {
   font-size: 17px;
 }
 .job-description {
-  font-size: 15px;
+  font-size: 16px;
   opacity: 0.7;
-  font-weight: 100;
+  font-weight: 500;
 }
 .read-more-link {
   opacity: 1;
   font-size: 15px;
-  font-weight: 600;
-  color: #004a7c;
+  font-weight: 900;
+  padding: 0px 7px 7px 0px;
+  color:#3797a4;
+  border-bottom-right-radius: 7px;
+    border-top-left-radius: 7px;
+border-right: 1px solid  #3797a4;
+border-top: 1px solid  #3797a4;
+
 }
-.contract-time {
-  font-weight: 400;
-  font-size: 12px;
+.contract-time,
+.date-posted {
+  font-size: 14px;
 }
 .date-posted {
   font-weight: 400;
-  font-size: 12px;
 }
 .apply-btn {
   background-color: #495464;
@@ -101,23 +149,140 @@ body {
 /*--- Pagination ---*/
 .pagination button {
   cursor: pointer;
-  padding: 7px 15px;
+  padding: 7px 2rem;
   color: black;
   border-radius: 7px;
   border-right: none;
   border-top: none;
   outline: none;
   font-size: 14px;
-  margin-left: 3px;
+  /* margin-left: 3px; */
+  border-top-right-radius: 0px;
 }
 .pagination button:hover {
   color: red;
 }
 .current-page {
-  background-color: skyblue;
-  color: white;
+  background-color: #495464;
+  font-size: 17px;
+}
+/***************** jobPost.ejs  styles ******************/
+#post-btn-div {
+  display: inline-block;
+}
+/******************** button effect ************************* */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+.buttons {
+  text-align: center;
+  border-radius: 7px;
+}
+.blob-btn {
+  z-index: 1;
+  position: relative;
+  padding: 7px 2.7rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #495464;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 0.5s;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.blob-btn:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #495464;
+  border-radius: 7px;
+}
+.blob-btn:after {
+  content: "";
+  z-index: -2;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s 0.2s;
+  border-radius: 7px;
+}
+.blob-btn:hover {
+  color: #fff;
+  border-radius: 7px;
+}
+.blob-btn:hover:after {
+  transition: all 0.3s;
+  left: 0;
+  top: 0;
+  border-radius: 7px;
+}
+.blob-btn__inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  background: #fff;
+}
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url("#goo");
+}
+.blob-btn__blob {
+  position: absolute;
+  top: 2px;
+  width: 25%;
+  height: 100%;
+  background: #495464;
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transition: transform 0.45s;
+}
+
+.blob-btn__blob:nth-child(1) {
+  left: 0%;
+  transition-delay: 0s;
+}
+.blob-btn__blob:nth-child(2) {
+  left: 30%;
+  transition-delay: 0.08s;
+}
+.blob-btn__blob:nth-child(3) {
+  left: 60%;
+  transition-delay: 0.16s;
+}
+.blob-btn__blob:nth-child(4) {
+  left: 90%;
+  transition-delay: 0.24s;
+}
+.blob-btn:hover .blob-btn__blob {
+  transform: translateZ(0) scale(1.7);
+}
+/* footer.ejs styles */
+.footer-copyright a {
+  color: black;
+  border-bottom: 1px solid black;
+}
 /***************** Error.ejs styles ******************/
 .error-container {
   display: flex;
@@ -152,6 +317,9 @@ body {
   #num-of-pages {
     font-size: 25px;
   }
+  #job-title-searched {
+    font-size: 27px;
+  }
 
   .job-title {
     font-size: 25px;
@@ -170,12 +338,7 @@ body {
     font-size: 18px;
     opacity: 0.75;
   }
-  .read-more-link {
-    opacity: 1;
-    font-size: 20px;
-    font-weight: 600;
-    color: #004a7c;
-  }
+  
   .contract-time {
     font-weight: 400;
     font-size: 17px;
@@ -189,21 +352,23 @@ body {
     font-weight: 100;
     padding: 7px 6rem;
   }
-
+  /* footer.ejs styles */
+  .footer-copyright {
+    font-size: 17px;
+  }
+  /* jobpost.ejs */
+  .blob-btn {
+    font-size: 17px;
+    padding: 7px 3.7rem;
+  }
   /*--- Pagination ---*/
   .pagination button {
-    padding: 7px 20px;
-
     font-size: 19px;
-    margin-left: 5px;
   }
   .pagination button:hover {
     color: red;
   }
-  .current-page {
-    background-color: skyblue;
-    color: white;
-  }
+
   /* error */
   #error-message {
     font-size: 22px;

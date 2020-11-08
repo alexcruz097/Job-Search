@@ -3,7 +3,7 @@ const body = require("body-parser");
 const https = require("https");
 const PORT = process.env.PORT || 3000;
 // keys
-const keys = require("./config/development/keys.js");
+const keys = require("./config/production/prod.js");
 
 // Load the full build.
 let _ = require("lodash");
@@ -103,6 +103,7 @@ app.get("/showJobs/:page", (req, res) => {
     currentPage: currentPage,
     numberOfPages: numberOfPages,
     numOfJobsFound: numOfJobsFound,
+    jobTitle: jobTitle
   });
 });
 
@@ -110,25 +111,23 @@ app.post("/showJobs/:page", (req, res) => {
   let nextPage = req.body.nextPage;
   let prevPage = req.body.prevPage;
   let lastPage = req.body.lastPage;
-  console.log(typeof lastPage);
   // functionality of the pagination to change the current page
   if (nextPage) {
     currentPage++;
-    console.log("next");
+ 
   } else if (prevPage) {
     currentPage--;
-    console.log("prev");
+
   } else if (lastPage) {
     currentPage = parseInt(lastPage);
-    console.log("clid");
+ 
   }
 
-  console.log(currentPage);
+
   https.get(
     `https://api.adzuna.com/v1/api/jobs/us/search/${currentPage}?what=${jobTitle}&where=${location}&${datePosted}&${maxDist}&${jobType}&app_id=${appID}&app_key=${apiKey}`,
     (response) => {
       let data = "";
-      console.log(response.statusCode);
       // action if the https goes thru
       if (response.statusCode === 200) {
         response.on("data", (notJson) => {

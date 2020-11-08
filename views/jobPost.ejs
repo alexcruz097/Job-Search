@@ -1,29 +1,35 @@
 <%- include("partials/header") -%>
 
-<div class="row">
-  <div class="card card-container mt-2 container col-md-8 col-xl-7">
+<div class="card card-container mt-2 container col-md-8 col-xl-6">
+  <div class="row">
     <div class="card-body container">
       <h5 class="card-title job-title">
-        <%- JSON.stringify(jobTitle).substring(1, jobTitle.length+1) %>
+       <i class="fas fa-search-location"></i>   <%- JSON.stringify(jobTitle).substring(1, jobTitle.length+1) %>
       </h5>
-      <h5 class="card-title company-name"><%- company %></h5>
-      <h5 class="card-title job-location"><%= location %></h5>
-      <p class="card-text job-description">
+      <h5 class="card-title company-name"> <i class="far fa-building"></i><%- company %></h5>
+      <h5 class="card-title job-location"> <i class="fas fa-map-marker-alt"></i><%= location %></h5>
+      <p id="job-post-description" class="card-text job-description">
         <%- JSON.stringify(description) %>
       </p>
       <p class="card-text contract-time">
-        <%= jobType.replace(/_/g, " ").toUpperCase() %>
+         <i class="fas fa-hourglass-half"></i><%= jobType.replace(/_/g, " ").toUpperCase() %>
       </p>
       <p class="card-text date-posted">
-        <%= new Date(dayCreated).toLocaleString() %>
+      <i class="fas fa-calendar-day"></i>    <%= new Date(dayCreated).toLocaleString() %>
       </p>
-      <a
-        class="btn btn-primary apply-btn"
-        target="_blank"
-        href="<%= applyURL %>"
-        >Apply</a
+    </div>
+  </div>
+  <!-- buttons appl -->
+  <div class=" mb-3 d-flex justify-content-start " id="post-btn-div ">
+    <div >
+      <a target="_blank" href="<%= applyURL %>">
+        <%- include("partials/applyBTN.ejs") -%></a
       >
-      <a class="btn btn-primary" href="/showJobs/<%= currentPage %>">Go back</a>
+    </div>
+    <div class="ml-2">
+      <a target="_blank" href="/showJobs/<%= currentPage %>">
+        <%- include("partials/goBackBTN.ejs") -%></a
+      >
     </div>
   </div>
 </div>

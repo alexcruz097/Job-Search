@@ -152,6 +152,7 @@ border-top: 1px solid  #3797a4;
   padding: 7px 2rem;
   color: black;
   border-radius: 7px;
+  border-left: 2px solid black;
   border-right: none;
   border-top: none;
   outline: none;

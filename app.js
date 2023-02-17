@@ -4,7 +4,7 @@ const https = require("https");
 const PORT = process.env.PORT || 3000;
 // keys
 const keys = require("./config/production/prod.js");
-
+console.log(keys)
 // Load the full build.
 let _ = require("lodash");
 const ejs = require("ejs");

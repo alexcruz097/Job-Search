@@ -2,9 +2,8 @@ const express = require("express");
 const body = require("body-parser");
 const https = require("https");
 const PORT = process.env.PORT || 3000;
+require("dotenv").config();
 // keys
-const keys = require("./config/production/prod.js");
-console.log(keys)
 // Load the full build.
 let _ = require("lodash");
 const ejs = require("ejs");
@@ -22,8 +21,8 @@ app.use(
   })
 );
 // data needed for the request to work
-const apiKey = keys.app_key;
-const appID = keys.app_id;
+let appID = process.env.app_id;
+let apiKey = process.env.app_key;
 // querys to make url request
 let jobTitle;
 let location;
@@ -103,7 +102,7 @@ app.get("/showJobs/:page", (req, res) => {
     currentPage: currentPage,
     numberOfPages: numberOfPages,
     numOfJobsFound: numOfJobsFound,
-    jobTitle: jobTitle
+    jobTitle: jobTitle,
   });
 });
 
@@ -114,15 +113,11 @@ app.post("/showJobs/:page", (req, res) => {
   // functionality of the pagination to change the current page
   if (nextPage) {
     currentPage++;
- 
   } else if (prevPage) {
     currentPage--;
-
   } else if (lastPage) {
     currentPage = parseInt(lastPage);
- 
   }
-
 
   https.get(
     `https://api.adzuna.com/v1/api/jobs/us/search/${currentPage}?what=${jobTitle}&where=${location}&${datePosted}&${maxDist}&${jobType}&app_id=${appID}&app_key=${apiKey}`,
